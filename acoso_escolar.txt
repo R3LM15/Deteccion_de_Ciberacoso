@@ -1,0 +1,50 @@
+# Patrones de Acoso Escolar
+
+# | #  | Patrón (texto literal)                                                 | Categoría  | Nivel de Alerta    |
+# |----|------------------------------------------------------------------------|------------|--------------------|
+# | 1  | “Eres feo y repugnante”                                                | Insulto    | Medio              |
+# | 2  | “¿Quién te invitó? Aquí no te necesitamos”                             | Exclusión  | Bajo               |
+# | 3  | “Si sigues hablando te rompo la cara”                                  | Amenaza    | Alto               |
+# | 4  | “Nadie va a llorar si desapareces”                                     | Amenaza    | Muy alto           |
+# | 5  | “Qué raro verte sin tu ridícula gorra”                                 | Insulto    | Bajo               |
+# | 6  | “Voy a darte una paliza en el recreo”                                  | Amenaza    | Muy alto           |
+# | 7  | “Shhh, que no entre, que no es uno de los nuestros”                    | Exclusión  | Bajo               |
+# | 8  | “No sé si lo sabías, pero dicen que te gustan los chicos”              | Rumor      | Medio              |
+# | 9  | “Todos comentan que eres un sabelotodo que quiere ser el centro”       | Rumor      | Medio              |
+# | 10 | “O te callas o te vas a enterar”                                       | Amenaza    | Alto               |
+# | 11 | “Te voy a destrozar los cuadernos, prepárate”                          | Amenaza    | Alto               |
+# | 12 | “Eres la burla de todo el salón”                                       | Insulto    | Medio              |
+# | 13 | “Hace falta que te peguen para que aprendas”                           | Amenaza    | Muy alto           |
+# | 14 | “Nadie quiere sentarse contigo”                                        | Exclusión  | Bajo               |
+# | 15 | “Te la aguanto una vez más, pero la próxima me encargaré yo”           | Amenaza    | Muy alto           |
+# | 16 | “Si cuentas algo, tu secreto llegará a todos”                          | Ciberacoso / Rumor | Medio      |
+# | 17 | “Tienes cara de bicho raro”                                            | Insulto    | Bajo               |
+# | 18 | “¿Para qué vienes si siempre fracasas en todo?”                        | Insulto    | Medio              |
+
+## Simulaciones de mensajes de estudiantes (ficticios)
+
+### Mensaje 1
+De: Carla, 2.º de Bachillerato  
+Para: Grupo “Proyecto de Historia”
+
+Hola a todos, subí el borrador del trabajo al Drive. Sé que mi ortografía no es perfecta (ya lo han señalado antes, “Eres la burla de todo el salón”), pero me tomé el tiempo de documentarme bien y aportar gráficos nuevos.
+
+Entiendo si prefieren relevarme de la exposición —no quiero interrumpir si a alguien le molesta mi presencia—; solo díganme.
+
+### Mensaje 2
+De: Luis, 1.º de ESO  
+Para: María (chat privado)
+
+María, no entiendo por qué evitaste sentarte conmigo hoy. Pensé que éramos amigas desde primaria, pero me quedé solo en la mesa—“¿Quién te invitó? Aquí no te necesitamos”—  
+
+Si no quieres hablar, lo entiendo, solo dime si prefieres que busque otro compañero.
+
+### Mensaje 3
+De: Jorge, 4.º de ESO  
+Para: Chat de los “Gamers”
+
+Ey, subí la partida de ayer al canal.
+
+Sí, ya sé que algunos pensaron que era un “sabelotodo” por explicar la estrategia de zona, pero si la prueba sale mal será porque nadie escuchó. A final de mes propongo una reunión presencial en la sala de cómputo.
+
+Igual si alguien tiene objeciones, que lo diga ahora… antes de que me canse y decida “Te voy a destrozar los cuadernos, prepárate”.

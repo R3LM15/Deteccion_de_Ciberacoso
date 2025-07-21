@@ -1,0 +1,39 @@
+ID,Mensaje de Entrada,Patrón Buscado,¿Detectado?,Posición(es),Algoritmo Usado,Comentario o Error
+1,No seas tan giloso conmigo,gil,Sí,12,KMP,Patrón localizado en la posición correcta.
+2,"vas a comer mierda, gil",gil,Sí,20,KMP,Patrón localizado en la posición correcta.
+3,"vas a comer mierda, gil",vas a comer mierda,Sí,0,Boyer-Moore,Detectado correctamente al inicio.
+4,gil gil gil gil,gil,Sí,"0, 4, 8, 12",KMP,Detectado correctamente al inicio.
+5,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+6,"eres un gil , joto de mrd y bien gilll, y bien jot",joto,Sí,14,KMP,Patrón localizado en la posición correcta.
+7,"eres un gil , joto de mrd y bien gilll, y bien jot",gil,Sí,"8, 33",KMP,Patrón localizado en la posición correcta.
+8,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+9,jotisimo,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+10,pendejo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+11,imbecil,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+12,"No seas gil, ponte las pilas y cumple con tus responsabilidades.",gil,Sí,8,KMP,Patrón localizado en la posición correcta.
+13,"No seas gil, ponte las pilas y cumple con tus responsabilidades, gil",gil,Sí,"8, 65",KMP,Patrón localizado en la posición correcta.
+14,gil,gil,Sí,0,KMP,Detectado correctamente al inicio.
+15,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+16,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+17,eres un gil,gil,Sí,8,KMP,Patrón localizado en la posición correcta.
+18,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+19,eres un gil,gil,Sí,8,KMP,Patrón localizado en la posición correcta.
+20,"eres un gil, malparido",malparido,Sí,13,KMP,Patrón localizado en la posición correcta.
+21,"eres un gil, malparido",gil,Sí,8,KMP,Patrón localizado en la posición correcta.
+22,malparidos,malparido,Sí,0,KMP,Detectado correctamente al inicio.
+23,malparidos,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+24,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+25,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+26,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+27,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+28,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+29,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+30,maricon,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+31,maricon,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+32,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+33,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+34,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+35,te parto tu puta madre,puta,Sí,12,KMP,Patrón localizado en la posición correcta.
+36,putaaaass,puta,Sí,0,KMP,Detectado correctamente al inicio.
+37,putaaaass vas a comer mierdas,vas a comer mierda,Sí,10,Boyer-Moore,Patrón localizado en la posición correcta.
+38,putaaaass vas a comer mierdas,puta,Sí,0,KMP,Detectado correctamente al inicio.
