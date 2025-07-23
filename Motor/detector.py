@@ -31,6 +31,8 @@ def distancia_levenshtein(s1, s2):
         previous_row = current_row
     return previous_row[-1]
 
+
+
 def comentar_patron(texto, patron, indices_kmp, indices_bm):
     texto_lower = texto.lower()
 
@@ -41,10 +43,10 @@ def comentar_patron(texto, patron, indices_kmp, indices_bm):
 
     indices = indices_kmp + indices_bm
     if not indices:
-        # Buscar variante con Levenshtein para sinónimos o errores menores
+        # No encontrado directamente: aplicar detección flexible
         len_patron = len(patron)
-        ventana_min = max(1, len_patron - 2)
-        ventana_max = len_patron + 2
+        ventana_min = max(3, len_patron - 2)
+        ventana_max = len_patron + 6  # por sufijos largos
 
         for start in range(len(texto_lower) - ventana_min + 1):
             for ventana in range(ventana_min, ventana_max + 1):
@@ -53,23 +55,46 @@ def comentar_patron(texto, patron, indices_kmp, indices_bm):
                     continue
                 fragmento = texto_lower[start:end]
                 dist = distancia_levenshtein(patron, fragmento)
-                if dist <= 2:
+
+                # Regla 1: Levenshtein si patrón largo
+                if len(patron) > 6 and dist == 1:
                     return "Variante gramatical no detectada (sinónimos)."
+
+                # Regla 2: sufijos comunes ofensivos
+                sufijos_validos = [
+                    's', 'es', 'azo', 'aza', 'asas', 'asos', 'as', 'tas', 'itas', 'itos', 'otes',
+                    'ísimo', 'ísima', 'isimo', 'isima', 'ísimos', 'ísimas', 'isimos', 'isimas',
+                    'on', 'ona', 'ones', 'onas', 'uco', 'uca', 'otes', 'azas'
+                ]
+                if fragmento.startswith(patron):
+                    resto = fragmento[len(patron):]
+                    if resto in sufijos_validos:
+                        return "Variante gramatical no detectada (sinónimos)."
+
+                # Regla 3: contiene al menos 3 caracteres iniciales iguales y seguidos
+                for k in range(len(patron), 2, -1):  # desde len hasta 3
+                    if fragmento.startswith(patron[:k]):
+                        return "Variante gramatical no detectada (sinónimos)."
+
         return "Patrón no está en el mensaje. Comprobación negativa."
 
+    # Detección literal
     if 0 in indices:
         return "Detectado correctamente al inicio."
 
+    # Contexto irónico
     for pos in indices:
         start = max(0, pos - 3)
         contexto = texto_lower[start:pos]
         if "no" in contexto or "sin" in contexto:
             return "Detección en contexto irónico."
 
+    # No literal, pero parecido
     if patron not in texto_lower:
         return "Variante gramatical no detectada (sinónimos)."
 
     return "Patrón localizado en la posición correcta."
+
 
 
 def analizar_texto_con_comentarios(texto, patrones):

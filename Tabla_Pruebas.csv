@@ -12,28 +12,89 @@ ID,Mensaje de Entrada,Patrón Buscado,¿Detectado?,Posición(es),Algoritmo Usado
 11,imbecil,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
 12,"No seas gil, ponte las pilas y cumple con tus responsabilidades.",gil,Sí,8,KMP,Patrón localizado en la posición correcta.
 13,"No seas gil, ponte las pilas y cumple con tus responsabilidades, gil",gil,Sí,"8, 65",KMP,Patrón localizado en la posición correcta.
-14,gil,gil,Sí,0,KMP,Detectado correctamente al inicio.
-15,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-16,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-17,eres un gil,gil,Sí,8,KMP,Patrón localizado en la posición correcta.
-18,eres un gi,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-19,eres un gil,gil,Sí,8,KMP,Patrón localizado en la posición correcta.
-20,"eres un gil, malparido",malparido,Sí,13,KMP,Patrón localizado en la posición correcta.
-21,"eres un gil, malparido",gil,Sí,8,KMP,Patrón localizado en la posición correcta.
-22,malparidos,malparido,Sí,0,KMP,Detectado correctamente al inicio.
-23,malparidos,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-24,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-25,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-26,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-27,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-28,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-29,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-30,maricon,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-31,maricon,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-32,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-33,maricones,gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
-34,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
-35,te parto tu puta madre,puta,Sí,12,KMP,Patrón localizado en la posición correcta.
-36,putaaaass,puta,Sí,0,KMP,Detectado correctamente al inicio.
-37,putaaaass vas a comer mierdas,vas a comer mierda,Sí,10,Boyer-Moore,Patrón localizado en la posición correcta.
-38,putaaaass vas a comer mierdas,puta,Sí,0,KMP,Detectado correctamente al inicio.
+14,la luisa le dijo al pepito que es un ciego de mierda,miope,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+15,la luisa le dijo al pepito que es un ciego de mierda,ciego de mierda,Sí,37,Boyer-Moore,Patrón localizado en la posición correcta.
+16,la luisa le dijo al pepito que es un ciego de mierda,miope,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+17,la luisa le dijo al pepito que es un ciego de mierda,ciego de mierda,Sí,37,Boyer-Moore,Patrón localizado en la posición correcta.
+18,puto,puta,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+19,"No te comportes como un joto, aprende a respetar a las personas que te rodean.",gil,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+20,"No te comportes como un joto, aprende a respetar a las personas que te rodean.",puta,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+21,tonto de gil,gil,Sí,9,KMP,Patrón localizado en la posición correcta.
+22,puta,puta,Sí,0,KMP,Detectado correctamente al inicio.
+23,puto,puta,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+24,gil de mierda,miope,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+25,gil de mierda,gil,Sí,0,KMP,Detectado correctamente al inicio.
+26,gil de mierda,miope,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+27,gil de mierda,gil,Sí,0,KMP,Detectado correctamente al inicio.
+28,gil,gil,Sí,0,KMP,Detectado correctamente al inicio.
+29,pendejo de mierga gilipollas,gil,Sí,18,KMP,Patrón localizado en la posición correcta.
+30,pendejo de mierga gilipollas,gil,Sí,18,KMP,Patrón localizado en la posición correcta.
+31,ciego de mierda,ciego de mierda,Sí,0,Boyer-Moore,Detectado correctamente al inicio.
+32,miope de mierda,miope,Sí,0,KMP,Detectado correctamente al inicio.
+33,pendejo miope de mierda,miope,Sí,8,KMP,Patrón localizado en la posición correcta.
+34,puto,puto,Sí,0,KMP,Detectado correctamente al inicio.
+35,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+36,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+37,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+38,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+39,Ese tipo es un idiotaaa,idiota,Sí,15,KMP,Patrón localizado en la posición correcta.
+40,putas,puta,Sí,0,KMP,Detectado correctamente al inicio.
+41,putasas,puta,Sí,0,KMP,Detectado correctamente al inicio.
+42,putasas,puta,Sí,0,KMP,Detectado correctamente al inicio.
+43,gil,gil,Sí,0,KMP,Detectado correctamente al inicio.
+44,maricones,maricon,Sí,0,KMP,Detectado correctamente al inicio.
+45,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+46,gil,gil,Sí,0,KMP,Detectado correctamente al inicio.
+47,putos,puta,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+48,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+49,putazos,puta,Sí,0,KMP,Detectado correctamente al inicio.
+50,putazos,puto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+51,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+52,jot,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+53,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+54,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+55,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+56,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+57,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+58,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+59,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+60,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+61,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+62,idiota,idiota,Sí,0,KMP,Detectado correctamente al inicio.
+63,idiot,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+64,idio,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+65,idio,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+66,idiotos,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+67,idiotos,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+68,idiotos,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+69,idiotos,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+70,idiotos,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+71,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+72,jot,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+73,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+74,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+75,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+76,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+77,jot,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+78,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+79,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+80,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+81,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+82,jot,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+83,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+84,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+85,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+86,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+87,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+88,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+89,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+90,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+91,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+92,gay,gay,Sí,0,KMP,Detectado correctamente al inicio.
+93,gayes,gay,Sí,0,KMP,Detectado correctamente al inicio.
+94,gayes,gay,Sí,0,KMP,Detectado correctamente al inicio.
+95,pidiota,idiota,Sí,1,KMP,Patrón localizado en la posición correcta.
+96,idiota,idiota,Sí,0,KMP,Detectado correctamente al inicio.
+97,idiota,idiota,Sí,0,KMP,Detectado correctamente al inicio.
+98,idiotas,idiota,Sí,0,KMP,Detectado correctamente al inicio.
+99,idios,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).

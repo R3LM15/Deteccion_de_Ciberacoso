@@ -1,38 +1,7 @@
-def boyer_moore(T, P):
-    n, m = len(T), len(P)
-    if m == 0:
+def kmp_search(text, pattern):
+    if not pattern:
         return []
 
-    # Tabla de la última aparición
-    last = {char: idx for idx, char in enumerate(P)}
-
-    i = m - 1  # índice del texto
-    k = m - 1  # índice del patrón
-    resultados = []
-
-    while i < n:
-        if T[i] == P[k]:
-            if k == 0:
-                resultados.append(i)  # patrón encontrado desde i hasta i + m
-                i += m  # saltamos al siguiente segmento
-                k = m - 1
-            else:
-                i -= 1
-                k -= 1
-        else:
-            j = last.get(T[i], -1)
-            salto = m - min(k, j + 1)
-            i += salto
-            k = m - 1
-
-    return resultados
-
-
-
-
-
-def kmp_search(text, pattern):
-    # Crear el arreglo LPS (longest prefix suffix)
     lps = [0] * len(pattern)
     j = 0
     for i in range(1, len(pattern)):
@@ -42,7 +11,6 @@ def kmp_search(text, pattern):
             j += 1
             lps[i] = j
 
-    # Buscar patrón
     matches = []
     j = 0
     for i in range(len(text)):
@@ -55,3 +23,28 @@ def kmp_search(text, pattern):
             j = lps[j - 1]
     return matches
 
+
+def boyer_moore(texto, patron):
+    n, m = len(texto), len(patron)
+    if m == 0 or m > n:
+        return []
+
+    # Tabla de última aparición de cada carácter en el patrón
+    last = {char: idx for idx, char in enumerate(patron)}
+
+    resultados = []
+    i = 0  # índice del texto
+
+    while i <= n - m:
+        j = m - 1  # índice del patrón
+        while j >= 0 and patron[j] == texto[i + j]:
+            j -= 1
+        if j < 0:
+            resultados.append(i)
+            i += m  # salto completo si hubo coincidencia
+        else:
+            letra_actual = texto[i + j]
+            salto = j - last.get(letra_actual, -1)
+            i += max(1, salto)  # aseguramos al menos 1
+
+    return resultados
