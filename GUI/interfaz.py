@@ -55,68 +55,75 @@ def guardar_resultados_csv(nombre_archivo, mensaje, resultados):
 def abrir_editor_patrones(ruta_csv, actualizar_callback=None):
     editor = tk.Toplevel()
     editor.title("🛠️ Editor de Patrones")
-    editor.geometry("600x520")
+    editor.geometry("640x620")
+    editor.configure(bg="#1a1a2e")  # Fondo oscuro intenso
 
-    # Área para mostrar patrones actuales
-    area_patrones = scrolledtext.ScrolledText(editor, height=15, wrap=tk.WORD)
-    area_patrones.pack(fill=tk.BOTH, padx=10, pady=5)
+    columnas = ("Patron", "Tipo", "Nivel")
+    tree = ttk.Treeview(editor, columns=columnas, show="headings", height=15)
+    tree.heading("Patron", text="📝 Patrón")
+    tree.heading("Tipo", text="🏷️ Tipo")
+    tree.heading("Nivel", text="⚠️ Nivel")
+    tree.column("Patron", width=250, anchor="center")
+    tree.column("Tipo", width=180, anchor="center")
+    tree.column("Nivel", width=120, anchor="center")
+    tree.pack(padx=15, pady=15, fill="both", expand=True)
 
-    def cargar_patrones_en_area():
-        area_patrones.config(state='normal')
-        area_patrones.delete("1.0", tk.END)
+    style = ttk.Style()
+    style.theme_use("clam")
+    style.configure("Treeview.Heading", font=("Segoe UI", 10, "bold"), background="#16213e", foreground="white")
+    style.configure("Treeview", font=("Consolas", 10), background="#0f3460", fieldbackground="#0f3460", foreground="white", rowheight=25)
+    style.map('Treeview', background=[('selected', '#e94560')], foreground=[('selected', 'white')])
+
+    def cargar_patrones_en_tabla():
+        for row in tree.get_children():
+            tree.delete(row)
         if os.path.exists(ruta_csv):
             with open(ruta_csv, newline='', encoding='utf-8') as archivo:
                 lector = csv.DictReader(archivo)
-                area_patrones.insert(tk.END, f"Patrón | Tipo | Nivel\n")
-                area_patrones.insert(tk.END, "-"*50 + "\n")
                 for fila in lector:
-                    area_patrones.insert(tk.END, f"{fila['Patron']} | {fila['Tipo']} | {fila['Nivel']}\n")
-        area_patrones.config(state='disabled')
+                    tree.insert("", tk.END, values=(fila['Patron'], fila['Tipo'], fila['Nivel']))
 
-    cargar_patrones_en_area()
+    cargar_patrones_en_tabla()
 
-    frame_nuevo = tk.Frame(editor)
-    frame_nuevo.pack(pady=10)
+    frame_nuevo = tk.LabelFrame(editor, text="Agregar nuevo patrón", font=("Segoe UI", 10, "bold"), bg="#16213e", fg="white")
+    frame_nuevo.pack(padx=10, pady=5, fill="x")
 
-    tk.Label(frame_nuevo, text="Patrón:").grid(row=0, column=0, padx=5, pady=2, sticky="e")
-    entrada_patron = tk.Entry(frame_nuevo, width=30)
+    tk.Label(frame_nuevo, text="Patrón:", bg="#16213e", fg="white").grid(row=0, column=0, padx=5, pady=2, sticky="e")
+    entrada_patron = tk.Entry(frame_nuevo, width=30, bg="#0f3460", fg="white", insertbackground="white")
     entrada_patron.grid(row=0, column=1, padx=5, pady=2)
 
-    tk.Label(frame_nuevo, text="Tipo:").grid(row=1, column=0, padx=5, pady=2, sticky="e")
+    tk.Label(frame_nuevo, text="Tipo:", bg="#16213e", fg="white").grid(row=1, column=0, padx=5, pady=2, sticky="e")
     combo_tipo = ttk.Combobox(frame_nuevo, values=["Insulto", "Exclusion", "Amenaza"], state="readonly", width=28)
     combo_tipo.grid(row=1, column=1, padx=5, pady=2)
     combo_tipo.current(0)
 
-    tk.Label(frame_nuevo, text="Nivel:").grid(row=2, column=0, padx=5, pady=2, sticky="e")
+    tk.Label(frame_nuevo, text="Nivel:", bg="#16213e", fg="white").grid(row=2, column=0, padx=5, pady=2, sticky="e")
     combo_nivel = ttk.Combobox(frame_nuevo, values=["media", "alta", "muy alta"], state="readonly", width=28)
     combo_nivel.grid(row=2, column=1, padx=5, pady=2)
     combo_nivel.current(0)
+
+    boton_agregar = tk.Button(frame_nuevo, text="➕ Agregar Patrón", width=18, bg="#00b894", fg="white", activebackground="#019875", activeforeground="white",
+                              command=lambda: agregar_patron())
+    boton_agregar.grid(row=0, column=2, rowspan=3, padx=10, pady=2)
 
     def agregar_patron():
         patron = entrada_patron.get().strip()
         tipo = combo_tipo.get()
         nivel = combo_nivel.get()
 
-        if not patron or not tipo or not nivel:
-            messagebox.showwarning("Campos vacíos", "Por favor, completa todos los campos.")
-            return  # Quitamos el destroy para que el usuario corrija sin cerrar
+        if not patron:
+            messagebox.showwarning("Campos vacíos", "Por favor, ingresa un patrón.")
+            return
 
-        # Verificar si ya existe el patrón (ignorando mayúsculas)
-        existe = False
         if os.path.exists(ruta_csv):
             with open(ruta_csv, newline='', encoding='utf-8') as archivo:
                 lector = csv.DictReader(archivo)
                 for fila in lector:
                     if fila['Patron'].lower() == patron.lower():
-                        existe = True
-                        break
-
-        if existe:
-            messagebox.showwarning("Patrón existente", "El patrón ya existe en la lista.")
-            return  # Igual que arriba, sin cerrar ventana
+                        messagebox.showwarning("Patrón existente", "Este patrón ya está registrado.")
+                        return
 
         escribir_header = not os.path.exists(ruta_csv) or os.stat(ruta_csv).st_size == 0
-
         with open(ruta_csv, mode='a', newline='', encoding='utf-8') as f:
             campos = ['Patron', 'Tipo', 'Nivel']
             escritor = csv.DictWriter(f, fieldnames=campos)
@@ -124,42 +131,44 @@ def abrir_editor_patrones(ruta_csv, actualizar_callback=None):
                 escritor.writeheader()
             escritor.writerow({'Patron': patron, 'Tipo': tipo, 'Nivel': nivel})
 
-        cargar_patrones_en_area()
         entrada_patron.delete(0, tk.END)
         combo_tipo.current(0)
         combo_nivel.current(0)
 
-        messagebox.showinfo("Patrón agregado", f"Se agregó el patrón:\n{patron}")
-
+        cargar_patrones_en_tabla()
+        messagebox.showinfo("Éxito", "Patrón agregado correctamente.")
         if actualizar_callback:
             actualizar_callback()
 
-        editor.destroy()
+    frame_eliminar = tk.LabelFrame(editor, text="Eliminar patrón", font=("Segoe UI", 10, "bold"), bg="#16213e", fg="white")
+    frame_eliminar.pack(padx=10, pady=5, fill="x")
 
-    # --- Área y botón para eliminar patrón ---
-    tk.Label(editor, text="Patrón a eliminar:").pack(pady=(10,0))
-    entrada_eliminar = tk.Entry(editor, width=30)
-    entrada_eliminar.pack(pady=5)
+    tk.Label(frame_eliminar, text="Patrón a eliminar:", bg="#16213e", fg="white").grid(row=0, column=0, padx=5, pady=5)
+    entrada_eliminar = tk.Entry(frame_eliminar, width=30, bg="#0f3460", fg="white", insertbackground="white")
+    entrada_eliminar.grid(row=0, column=1, padx=5, pady=5)
+
+    boton_eliminar = tk.Button(frame_eliminar, text="❌ Eliminar Patrón", width=18, bg="#d63031", fg="white", activebackground="#b83227", activeforeground="white",
+                               command=lambda: eliminar_patron())
+    boton_eliminar.grid(row=0, column=2, padx=10, pady=5)
 
     def eliminar_patron():
         patron_eliminar = entrada_eliminar.get().strip()
         if not patron_eliminar:
-            messagebox.showwarning("Campo vacío", "Por favor, ingresa el patrón a eliminar.")
+            messagebox.showwarning("Campo vacío", "Ingresa el patrón a eliminar.")
             return
 
         if not os.path.exists(ruta_csv):
-            messagebox.showwarning("Archivo no encontrado", "No existe el archivo de patrones.")
+            messagebox.showwarning("No encontrado", "El archivo no existe.")
             return
 
         with open(ruta_csv, newline='', encoding='utf-8') as archivo:
             lector = list(csv.DictReader(archivo))
 
-        existe = any(fila['Patron'].lower() == patron_eliminar.lower() for fila in lector)
-        if not existe:
-            messagebox.showwarning("No encontrado", "No existe coincidencias encontradas.")
-            return
+        nuevos_patrones = [f for f in lector if f['Patron'].lower() != patron_eliminar.lower()]
 
-        nuevos_patrones = [fila for fila in lector if fila['Patron'].lower() != patron_eliminar.lower()]
+        if len(nuevos_patrones) == len(lector):
+            messagebox.showinfo("No encontrado", "No se encontró el patrón especificado.")
+            return
 
         with open(ruta_csv, mode='w', newline='', encoding='utf-8') as f:
             campos = ['Patron', 'Tipo', 'Nivel']
@@ -167,17 +176,13 @@ def abrir_editor_patrones(ruta_csv, actualizar_callback=None):
             escritor.writeheader()
             escritor.writerows(nuevos_patrones)
 
-        cargar_patrones_en_area()
         entrada_eliminar.delete(0, tk.END)
-        messagebox.showinfo("Patrón eliminado", f"Se eliminó el patrón:\n{patron_eliminar}")
-
+        cargar_patrones_en_tabla()
+        messagebox.showinfo("Éxito", "Patrón eliminado.")
         if actualizar_callback:
             actualizar_callback()
 
-    tk.Button(editor, text="➕ Agregar Patrón", command=agregar_patron).pack(pady=5)
-    tk.Button(editor, text="❌ Eliminar Patrón", command=eliminar_patron).pack(pady=5)
-
-# --- GUI principal ---
+# ------------------- GUI PRINCIPAL -------------------
 def lanzar_interfaz():
     ruta_csv_patrones = "patrones.csv"
     ruta_csv_resultados = "Tabla_Pruebas.csv"
@@ -197,7 +202,6 @@ def lanzar_interfaz():
         salida.config(state='normal')
         salida.delete("1.0", tk.END)
 
-        # Limpiar tags previos de resaltado
         entrada.tag_remove("resaltado_exacto", "1.0", tk.END)
         entrada.tag_remove("resaltado_parcial", "1.0", tk.END)
 
@@ -214,7 +218,6 @@ def lanzar_interfaz():
                 texto_lower = texto.lower()
                 patron_lower = patron.lower()
 
-                # Resaltar coincidencias exactas (posiciones reportadas por KMP o BM)
                 indices = []
                 if r.get('Índice KMP'):
                     indices.extend(r['Índice KMP'])
@@ -227,7 +230,6 @@ def lanzar_interfaz():
                     end_index = f"1.0 + {fin} chars"
                     entrada.tag_add("resaltado_exacto", start_index, end_index)
 
-                # Resaltar coincidencias parciales: buscamos subcadenas de tamaño 2 dentro del texto que no están resaltadas exactas
                 if len(patron_lower) > 2:
                     fragmento = patron_lower[:2]
                     start_pos = 0
@@ -235,7 +237,6 @@ def lanzar_interfaz():
                         pos = texto_lower.find(fragmento, start_pos)
                         if pos == -1:
                             break
-                        # Evitar superposición con exactas ya resaltadas
                         if not any(pos >= i and pos < i + len(patron_lower) for i in indices):
                             start_index = f"1.0 + {pos} chars"
                             end_index = f"1.0 + {pos + len(fragmento)} chars"
@@ -243,42 +244,41 @@ def lanzar_interfaz():
                         start_pos = pos + 1
 
         salida.config(state='disabled')
-
-        # Configurar colores para los tags
-        entrada.tag_config("resaltado_exacto", background="orange")
-        entrada.tag_config("resaltado_parcial", background="yellow")
+        entrada.tag_config("resaltado_exacto", background="#ff6f61")  # rojo coral vibrante
+        entrada.tag_config("resaltado_parcial", background="#ffd166")  # amarillo fuerte
 
         guardar_resultados_csv(ruta_csv_resultados, texto, resultados)
 
     ventana = tk.Tk()
     ventana.title("Detector de Bullying [EDA II]")
-    ventana.geometry("800x500")
+    ventana.geometry("800x650")
+    ventana.configure(bg="#16213e")  # fondo oscuro azul intenso
 
-    tk.Label(ventana, text="📝 Ingrese el texto a analizar:").pack(pady=5)
-    entrada = scrolledtext.ScrolledText(ventana, height=10, wrap=tk.WORD)
+    tk.Label(ventana, text="📝 Ingrese el texto a analizar:", bg="#16213e", fg="white", font=("Segoe UI", 12, "bold")).pack(pady=5)
+    entrada = scrolledtext.ScrolledText(ventana, height=10, wrap=tk.WORD, font=("Consolas", 12), bg="#0f3460", fg="white", insertbackground="white")
     entrada.pack(fill=tk.BOTH, padx=10, pady=5)
 
-    btn_analizar = tk.Button(ventana, text="🔍 Analizar texto", command=analizar)
+    btn_analizar = tk.Button(ventana, text="🔍 Analizar texto", command=analizar, bg="#00cec9", fg="black", activebackground="#00b8b6", activeforeground="black", font=("Segoe UI", 10, "bold"))
     btn_analizar.pack(pady=10)
 
-    tk.Label(ventana, text="📋 Resultados:").pack(pady=5)
-    salida = scrolledtext.ScrolledText(ventana, height=10, wrap=tk.WORD, state='disabled')
+    tk.Label(ventana, text="📋 Resultados:", bg="#16213e", fg="white", font=("Segoe UI", 12, "bold")).pack(pady=5)
+    salida = scrolledtext.ScrolledText(ventana, height=10, wrap=tk.WORD, state='disabled', font=("Consolas", 12), bg="#0f3460", fg="white")
     salida.pack(fill=tk.BOTH, padx=10, pady=5)
 
-    frame_botones = tk.Frame(ventana)
-    frame_botones.pack(fill=tk.X, side=tk.BOTTOM, padx=10, pady=5, anchor='sw')
+    frame_botones = tk.Frame(ventana, bg="#16213e")
+    frame_botones.pack(fill=tk.X, side=tk.BOTTOM, padx=10, pady=5)
 
-    btn_editar_patrones = tk.Button(frame_botones, text="🛠️ Editar patrones", command=lambda: abrir_editor_patrones(ruta_csv_patrones, actualizar_patrones))
+    btn_editar_patrones = tk.Button(frame_botones, text="🛠️ Editar patrones", bg="#0984e3", fg="white", activebackground="#0652DD", activeforeground="white", font=("Segoe UI", 10, "bold"),
+                                    command=lambda: abrir_editor_patrones(ruta_csv_patrones, actualizar_patrones))
     btn_editar_patrones.pack(side=tk.LEFT)
 
-    # Botón limpiar para borrar entradas y salidas
     def limpiar_campos():
         entrada.delete("1.0", tk.END)
         salida.config(state='normal')
         salida.delete("1.0", tk.END)
         salida.config(state='disabled')
 
-    btn_limpiar = tk.Button(frame_botones, text="🧹 Limpiar", command=limpiar_campos)
+    btn_limpiar = tk.Button(frame_botones, text="🧹 Limpiar", command=limpiar_campos, bg="#6c5ce7", fg="white", activebackground="#4834d4", activeforeground="white", font=("Segoe UI", 10, "bold"))
     btn_limpiar.pack(side=tk.LEFT, padx=10)
 
     ventana.mainloop()

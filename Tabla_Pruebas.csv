@@ -98,3 +98,18 @@ ID,Mensaje de Entrada,Patrón Buscado,¿Detectado?,Posición(es),Algoritmo Usado
 97,idiota,idiota,Sí,0,KMP,Detectado correctamente al inicio.
 98,idiotas,idiota,Sí,0,KMP,Detectado correctamente al inicio.
 99,idios,idiota,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+100,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+101,jotitismo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+102,putos,puta,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+103,putos,puto,Sí,0,KMP,Detectado correctamente al inicio.
+104,tu papapa es correista,tu para es hombre,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+105,tu papapa es correista,correista,Sí,13,KMP,Patrón localizado en la posición correcta.
+106,tu papapa es correista,tu papa,Sí,0,KMP,Detectado correctamente al inicio.
+107,mateo molina es joto,joto,Sí,16,KMP,Patrón localizado en la posición correcta.
+108,el mateo es joto,joto,Sí,12,KMP,Patrón localizado en la posición correcta.
+109,el mateo es joto,joto,Sí,12,KMP,Patrón localizado en la posición correcta.
+110,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+111,jotisimo,joto,No,,Ninguno,Variante gramatical no detectada (sinónimos).
+112,joto,joto,Sí,0,KMP,Detectado correctamente al inicio.
+113,joto jotisimo,joto,Sí,0,KMP,Detectado correctamente al inicio.
+114,joto jotisimo,joto,Sí,0,KMP,Detectado correctamente al inicio.
