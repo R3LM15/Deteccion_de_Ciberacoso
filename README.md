@@ -2,7 +2,7 @@
 
 ## Algoritos 
 
-Mediante el uso de algoritmos kmp, y boyer_more, el programa identificará patrones de agresión,  con opciín de almacenamiento , para posterior estudio
+Mediante el uso de algoritmos kmp, y boyer_more, el programa identificará patrones de agresión,  con opcíon de almacenamiento , para posterior estudio
 
 ## Patrones
 
