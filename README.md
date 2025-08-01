@@ -10,6 +10,8 @@ A través del botón de añadir patrones, se pueden eliminar y agregar nuevos pa
 
 ## Instrucciones de uso 
 
+*Ejecutar.py*
+
 Contamos con una interfaz principal, donde podremos ingresar el texto a analizar, y al cliquear el botón de "analizar texto", en el panel de resultados se mostrarán los patrones encontrados y coincidencias. 
 Para una mejor claridad, el texto introducido se resaltará dependiendo de la coincidencia encontrada.
 
